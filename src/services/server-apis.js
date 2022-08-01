@@ -54,7 +54,7 @@ export const patchBookApi = async (payload) => {
             throw new Error(`HTTP error! status: ${res.status}`)
         }
 
-        return res.json();
+        return await res.json();
 
     } catch (error) {
         throw new Error(`HTTP error! message: ${error.message}`)
@@ -64,7 +64,6 @@ export const patchBookApi = async (payload) => {
 }
 
 export const patchStudentApi = async (payload) => {
-    debugger
     try {
         const res = await fetch(`${BASE_URL}/students/${payload.id}`, {
             method: 'PATCH',
@@ -78,7 +77,7 @@ export const patchStudentApi = async (payload) => {
             throw new Error(`HTTP error! status: ${res.status}`)
         }
 
-        return res.json();
+        return await res.json()
 
     } catch (error) {
         throw new Error(`HTTP error! message: ${error.message}`)

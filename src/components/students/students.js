@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import LinearProgress from "@mui/material/LinearProgress";
 import { DataGrid } from "@mui/x-data-grid";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useActionCreator } from "../../state/actions/actions";
@@ -49,6 +50,8 @@ function Students() {
         width: "100%",
       }}
     >
+      {isLoading ? <LinearProgress /> : <div></div>}
+
       <DataGrid
         onRowClick={({ row }) => {
           setCurrentStudent(row);

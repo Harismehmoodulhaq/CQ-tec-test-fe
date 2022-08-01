@@ -1,7 +1,9 @@
 const flags = {
     isError: false,
-    isLoadding: false
+    isLoading: false,
 }
+
+export const CLOSE_TOAST = 2000
 
 export const initialState = {
     studentPage: {

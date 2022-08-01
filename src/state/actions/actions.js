@@ -11,6 +11,9 @@ import {
   patchStudentApi
 } from '../../services/server-apis';
 
+import {
+  CLOSE_TOAST
+} from '../../state/constants'
 
 export const TOGGLE_IS_MOBILE = "toggleIsMobile";
 
@@ -51,10 +54,11 @@ function getStudents() {
 
 
 export const SET_ONE_STUDENT = "setOneStudent"
+export const CLOSE_STUDENT_ERROR = "closeStudentError"
 
 function patchStudent(payload) {
   return async (dispatch) => {
-
+    debugger
     dispatch({
       type: STUDENT_PAGE_LOADDING,
     })
@@ -62,13 +66,19 @@ function patchStudent(payload) {
     try {
       await patchStudentApi(payload)
       dispatch({
-        type: SET_STUDENTS,
+        type: SET_ONE_STUDENT,
         payload,
       })
     } catch (error) {
       dispatch({
         type: STUDENT_PAGE_ERROR,
-      })
+
+      });
+      setTimeout(() => {
+        dispatch({
+          type: CLOSE_STUDENT_ERROR,
+        })
+      }, CLOSE_TOAST)
     }
   };
 }
@@ -101,6 +111,7 @@ function getBooks() {
 }
 
 export const SET_ONE_BOOK = "setOneBook"
+export const CLOSE_BOOK_ERROR = "closeError"
 
 function patchBook(payload) {
   return async (dispatch) => {
@@ -118,7 +129,12 @@ function patchBook(payload) {
     } catch (error) {
       dispatch({
         type: BOOK_PAGE_ERROR,
-      })
+      });
+      setTimeout(() => {
+        dispatch({
+          type: CLOSE_BOOK_ERROR,
+        })
+      }, CLOSE_TOAST)
     }
   };
 }

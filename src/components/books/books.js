@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import LinearProgress from "@mui/material/LinearProgress";
 import { DataGrid } from "@mui/x-data-grid";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useActionCreator } from "../../state/actions/actions";
@@ -63,26 +64,29 @@ function Books() {
     getBooks();
   }, []);
   return (
-    <div
-      style={{
-        height: "calc( 100vh - 150px )",
-        width: "100%",
-      }}
-    >
-      <DataGrid
-        onRowClick={({ row }) => {
-          setCurrentBook(row);
-          navigate(`/books/${row.id}`, {
-            replace: true,
-          });
+    <>
+      <div
+        style={{
+          height: "calc( 100vh - 150px )",
+          width: "100%",
         }}
-        rows={books}
-        columns={columns}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
-        checkboxSelection
-      />
-    </div>
+      >
+        {isLoading ? <LinearProgress /> : <div></div>}
+        <DataGrid
+          onRowClick={({ row }) => {
+            setCurrentBook(row);
+            navigate(`/books/${row.id}`, {
+              replace: true,
+            });
+          }}
+          rows={books}
+          columns={columns}
+          pageSize={10}
+          rowsPerPageOptions={[10]}
+          checkboxSelection
+        />
+      </div>
+    </>
   );
 }
 

@@ -10,8 +10,13 @@ import {
   SET_ONE_BOOK,
   SET_CURRENT_STUDENT,
   SET_ONE_STUDENT,
+  CLOSE_ERROR,
+  CLOSE_BOOK_ERROR,
+  CLOSE_STUDENT_ERROR,
 } from "../actions/actions";
-import { initialState } from "../constants";
+import {
+  initialState
+} from "../constants";
 
 export function commonReducer(state = initialState.common, action) {
   switch (action.type) {
@@ -29,48 +34,61 @@ export function commonReducer(state = initialState.common, action) {
 export function studentsReducer(state = initialState.studentPage, action) {
   switch (action.type) {
     case SET_STUDENTS:
+      debugger;
       return {
         ...state,
         students: action.payload,
-        isLoadding: false,
+          isLoading: false,
+          isError: false,
       };
 
     case SET_CURRENT_STUDENT:
       return {
         ...state,
         student: action.payload,
-        isLoadding: false,
+          isLoading: false,
+          isError: false,
       };
 
     case SET_ONE_STUDENT:
+      debugger;
       return {
         ...state,
         students: state.students.map((student) => {
-          if (+student.id === +action.payload.id) {
-            return action.payload;
-          }
-          return student;
-        }),
-        student: null,
-        isLoadding: false,
+            if (+student.id === +action.payload.id) {
+              return action.payload;
+            }
+            return student;
+          }),
+          student: null,
+          isLoading: false,
+          isError: false,
       };
 
     case STUDENT_PAGE_LOADDING:
+      debugger;
       return {
         ...state,
-        isLoadding: true,
-        isError: false,
+        isLoading: true,
+          isError: false,
       };
 
     case STUDENT_PAGE_ERROR:
       return {
         ...state,
         isError: true,
-        isLoadding: false,
+          isLoading: false,
       };
 
-    default:
-      return state;
+
+    case CLOSE_STUDENT_ERROR:
+      return {
+        ...state,
+        isError: false,
+      }
+
+      default:
+        return state;
   }
 }
 
@@ -80,44 +98,54 @@ export function booksReducer(state = initialState.bookPage, action) {
       return {
         ...state,
         books: action.payload,
-        isLoadding: false,
+          isLoading: false,
+          isError: false
       };
 
     case SET_CURRENT_BOOK:
       return {
         ...state,
         book: action.payload,
-        isLoadding: false,
+          isLoading: false,
+          isError: false
       };
 
     case SET_ONE_BOOK:
+      debugger
       return {
         ...state,
         books: state.books.map((book) => {
-          if (+book.id === +action.payload.id) {
-            return action.payload;
-          }
-          return book;
-        }),
-        book: null,
-        isLoadding: false,
+            if (+book.id === +action.payload.id) {
+              return action.payload;
+            }
+            return book;
+          }),
+          book: null,
+          isLoading: false,
+          isError: false
       };
 
     case BOOK_PAGE_LOADDING:
       return {
         ...state,
-        isLoadding: true,
-        isError: false,
+        isLoading: true,
+          isError: false,
       };
 
     case BOOK_PAGE_ERROR:
       return {
         ...state,
         isError: true,
-        isLoadding: false,
+          isLoading: false,
       };
 
-    default:
-      return state;
+    case CLOSE_BOOK_ERROR:
+      return {
+        ...state,
+        isError: false
+      }
+
+      default:
+        return state;
   }
 }
