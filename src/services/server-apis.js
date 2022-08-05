@@ -40,7 +40,6 @@ export const getBooksApi = async () => {
 }
 
 export const patchBookApi = async (payload) => {
-    debugger
     try {
         const res = await fetch(`${BASE_URL}/books/${payload.id}`, {
             method: 'PATCH',

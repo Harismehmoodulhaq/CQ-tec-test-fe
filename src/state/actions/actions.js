@@ -58,7 +58,6 @@ export const CLOSE_STUDENT_ERROR = "closeStudentError"
 
 function patchStudent(payload) {
   return async (dispatch) => {
-    debugger
     dispatch({
       type: STUDENT_PAGE_LOADDING,
     })
