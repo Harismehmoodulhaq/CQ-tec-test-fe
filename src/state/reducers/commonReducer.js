@@ -34,7 +34,6 @@ export function commonReducer(state = initialState.common, action) {
 export function studentsReducer(state = initialState.studentPage, action) {
   switch (action.type) {
     case SET_STUDENTS:
-      debugger;
       return {
         ...state,
         students: action.payload,
@@ -51,7 +50,6 @@ export function studentsReducer(state = initialState.studentPage, action) {
       };
 
     case SET_ONE_STUDENT:
-      debugger;
       return {
         ...state,
         students: state.students.map((student) => {
@@ -66,7 +64,6 @@ export function studentsReducer(state = initialState.studentPage, action) {
       };
 
     case STUDENT_PAGE_LOADDING:
-      debugger;
       return {
         ...state,
         isLoading: true,
@@ -111,7 +108,6 @@ export function booksReducer(state = initialState.bookPage, action) {
       };
 
     case SET_ONE_BOOK:
-      debugger
       return {
         ...state,
         books: state.books.map((book) => {

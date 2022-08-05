@@ -106,7 +106,10 @@ export const BookForm = () => {
                   </Toolbar>
                 </AppBar>
               </Box>
-              {/* Form */} <Toolbar />
+
+              {/* Form */}
+
+              <Toolbar />
               <Box
                 component="form"
                 sx={{
