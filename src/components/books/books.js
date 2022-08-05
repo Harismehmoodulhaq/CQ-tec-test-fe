@@ -55,9 +55,19 @@ const columns = [
     },
   },
 ];
-
+// making customHooks
+// function useSelectorWatcher(watch) {
+//   const { books, isLoading, isError } = useSelector(({ bookPage }) => bookPage);
+//   const [state, setState] = useSelector()
+//   useEffect(() => {
+//     setState(isError)
+//   },[isError] )
+//   return [state]
+// }
+// const  [isError] = useSelectorWatcher()
 function Books() {
   const { books, isLoading, isError } = useSelector(({ bookPage }) => bookPage);
+
   const { setCurrentBook, getBooks } = useActionCreator();
   const navigate = useNavigate();
   useEffect(() => {
@@ -71,7 +81,7 @@ function Books() {
           width: "100%",
         }}
       >
-        {isLoading ? <LinearProgress /> : <div></div>}
+        {isLoading ? <LinearProgress /> : <div> </div>}
         <DataGrid
           onRowClick={({ row }) => {
             setCurrentBook(row);

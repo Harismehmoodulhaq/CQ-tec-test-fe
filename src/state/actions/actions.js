@@ -57,7 +57,8 @@ export const SET_ONE_STUDENT = "setOneStudent"
 export const CLOSE_STUDENT_ERROR = "closeStudentError"
 
 function patchStudent(payload) {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const presentState = getState()
     dispatch({
       type: STUDENT_PAGE_LOADDING,
     })

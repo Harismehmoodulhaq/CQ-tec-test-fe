@@ -1,0 +1,27 @@
+1- state; is the present big data object in time
+2- store is the Hub or junction that is responsible of making a change in that state
+   via Reducer :
+
+    I'm in a functional component :say bookPage and there I can tell the reducer to accetp my change ; How ?
+    
+    const {fetchDataFromServer, openDropDownInHeder} =  useActionCreator()  
+    
+    Answer: I'll inform the store via reducer by dispatching an Action Object 
+    Action = { type:'string',:payload: myDataThatIwanToSendToStore}
+
+    const payload = true;
+    openDropDownInHeder(payload) ====> this function is called an actionDispatcher or actionCreator Function 
+    which is present in actions.js  
+    for Async operations ( example: fetchDataFromServer ) our actionCreatorFunction is responsible to fetch data from server 
+    and add this data to store by dispatching an action : dispatch({type:'DATA, payload: payload})
+
+    so: if we want to shift some data from one component to another component ; we do not talk to Store directly 
+    we use actionCreatorFunction and give this data to it and action creator 
+    prepares an action : an Object with two proerties { tyepe, payload} ; and this action is dispatched to store via reducer 
+
+    the changed is shifted from reducer to "state" and this changed is sent to all the components who are waiting for any change
+    in the state using 
+
+    const {book} = useSelector() in the component ; 
+
+    this is the complete lifecycle of the system;
